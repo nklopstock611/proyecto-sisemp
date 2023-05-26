@@ -1,0 +1,236 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" controllerName="com.sap.build.standard.untitledPrototype.controller.Page2" xmlns:uxap="sap.uxap" xmlns="sap.m" xmlns:layout="sap.ui.layout" xmlns:form="sap.ui.layout.form">
+    <uxap:ObjectPageLayout showTitleInHeaderContent="false" showHeaderContent="true" showEditHeaderButton="false" showFooter="false" class="sapUiSizeCompact">
+        <uxap:headerTitle>
+            <uxap:ObjectPageHeader objectTitle="{ID}" objectSubtitle="{Cliente/correo}" isObjectIconAlwaysVisible="false" isObjectTitleAlwaysVisible="true" isObjectSubtitleAlwaysVisible="true" showPlaceholder="true" objectImageURI="/build/uilibraries/content/static/image-canvas.svg">
+                <uxap:navigationBar>
+                    <Bar>
+                        <contentLeft>
+                            <Button type="Back" press="_onFioriObjectPageHeaderPress"/>
+                        </contentLeft>
+                        <contentMiddle>
+                            <Title text="Pedido"/>
+                        </contentMiddle>
+                        <contentRight/>
+                    </Bar>
+                </uxap:navigationBar>
+                <uxap:actions>
+                    <Button text="Edit" iconFirst="false" type="Emphasized" enabled="true" press="_onFioriObjectPageActionButtonPress">
+                        <layoutData>
+                            <OverflowToolbarLayoutData moveToOverflow="true"/>
+                        </layoutData>
+                    </Button>
+                    <Button text="" icon="sap-icon://action" iconFirst="true" type="Transparent" enabled="true">
+                        <layoutData>
+                            <OverflowToolbarLayoutData moveToOverflow="true"/>
+                        </layoutData>
+                    </Button>
+                </uxap:actions>
+                <uxap:breadCrumbsLinks/>
+            </uxap:ObjectPageHeader>
+        </uxap:headerTitle>
+        <uxap:headerContent>
+            <VBox>
+                <items>
+                    <Title text="Total"/>
+                    <ObjectNumber number="{path:'total', formatter:'.formatFractionDigitFromValue'}" unit="COP" state="None"/>
+                </items>
+            </VBox>
+            <VBox>
+                <items>
+                    <Title text="Informacion"/>
+                    <HBox>
+                        <items>
+                            <Label text="Fecha pedido"/>
+                            <Label text=":" class="sapUiTinyMarginEnd"/>
+                            <ObjectStatus text="{path: 'fecha_pedido', type: 'sap.ui.model.type.Date', formatOptions: { UTC: true, style: 'short' }}"/>
+                        </items>
+                    </HBox>
+                    <HBox>
+                        <items>
+                            <Label text="Estado"/>
+                            <Label text=":" class="sapUiTinyMarginEnd"/>
+                            <ObjectStatus text="{estado}" state="{path:'estadoCC', formatter:'.formatStateFromCriticality'}" icon="{path:'estadoCC', formatter:'.formatIconFromCriticality'}"/>
+                        </items>
+                    </HBox>
+                    <HBox>
+                        <items>
+                            <Label text="Direccion Entrega"/>
+                            <Label text=":" class="sapUiTinyMarginEnd"/>
+                            <ObjectStatus text="{direccion_entrega}"/>
+                        </items>
+                    </HBox>
+                    <HBox>
+                        <items>
+                            <Label text="Metodo de Pago"/>
+                            <Label text=":" class="sapUiTinyMarginEnd"/>
+                            <ObjectStatus text="{metodo_de_pago}"/>
+                        </items>
+                    </HBox>
+                </items>
+            </VBox>
+            <VBox>
+                <items>
+                    <Title text="Cliente"/>
+                    <HBox>
+                        <items>
+                            <Label text="nombre"/>
+                            <Label text=":" class="sapUiTinyMarginEnd"/>
+                            <ObjectStatus text="{Cliente/nombre}"/>
+                        </items>
+                    </HBox>
+                    <HBox>
+                        <items>
+                            <Label text="Correo"/>
+                            <Label text=":" class="sapUiTinyMarginEnd"/>
+                            <ObjectStatus text="{Cliente/correo}"/>
+                        </items>
+                    </HBox>
+                </items>
+            </VBox>
+        </uxap:headerContent>
+        <uxap:sections>
+            <uxap:ObjectPageSection title="Transporte">
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection title="Transporte">
+                        <uxap:blocks>
+                            <layout:Grid defaultSpan="XL12 L12 M12 S12">
+                                <layout:content>
+                                    <form:Form>
+                                        <form:layout>
+                                            <form:ResponsiveGridLayout labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="4" columnsL="3" columnsM="2" singleContainerFullSize="false"/>
+                                        </form:layout>
+                                        <form:formContainers>
+                                            <form:FormContainer title="Conductor">
+                                                <form:formElements>
+                                                    <form:FormElement>
+                                                        <form:label>
+                                                            <Label text="Nombre" required="false"/>
+                                                        </form:label>
+                                                        <form:fields>
+                                                            <ObjectStatus text="{Transportador/nombre}"/>
+                                                        </form:fields>
+                                                    </form:FormElement>
+                                                    <form:FormElement>
+                                                        <form:label>
+                                                            <Label text="Estado" required="false"/>
+                                                        </form:label>
+                                                        <form:fields>
+                                                            <ObjectStatus text="{Transportador/estado}"/>
+                                                        </form:fields>
+                                                    </form:FormElement>
+                                                </form:formElements>
+                                            </form:FormContainer>
+                                        </form:formContainers>
+                                    </form:Form>
+                                </layout:content>
+                            </layout:Grid>
+                        </uxap:blocks>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+            <uxap:ObjectPageSection title="Items">
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection title="Items">
+                        <uxap:blocks>
+                            <Table width="100%" growing="true" growingScrollToLoad="true" growingThreshold="25" mode="SingleSelectLeft" itemPress="_onFioriObjectPageTableItemPress" items="{path:'Item', templateShareable:true}">
+                                <headerToolbar>
+                                    <OverflowToolbar design="Transparent">
+                                        <content>
+                                            <ToolbarSpacer/>
+                                            <Button text="Delete" iconFirst="false" type="Transparent" press="_onFioriObjectPageTableActionPress">
+                                                <layoutData>
+                                                    <OverflowToolbarLayoutData moveToOverflow="true"/>
+                                                </layoutData>
+                                            </Button>
+                                            <Button icon="sap-icon://action-settings" type="Transparent">
+                                                <layoutData>
+                                                    <OverflowToolbarLayoutData moveToOverflow="true"/>
+                                                </layoutData>
+                                            </Button>
+                                        </content>
+                                    </OverflowToolbar>
+                                </headerToolbar>
+                                <columns>
+                                    <Column width="auto" minScreenWidth="Tablet" demandPopin="true">
+                                        <header>
+                                            <Text text="Nombre" width="auto"/>
+                                        </header>
+                                    </Column>
+                                    <Column width="auto" minScreenWidth="Phone">
+                                        <header>
+                                            <Text text="Detalles" width="auto"/>
+                                        </header>
+                                    </Column>
+                                    <Column width="auto" hAlign="Right" minScreenWidth="Phone">
+                                        <header>
+                                            <Text text="Precio" width="auto"/>
+                                        </header>
+                                    </Column>
+                                    <Column width="auto" hAlign="Right" minScreenWidth="Phone">
+                                        <header>
+                                            <Text text="Cantidad" width="auto"/>
+                                        </header>
+                                    </Column>
+                                    <Column width="auto" hAlign="Right" minScreenWidth="Phone">
+                                        <header>
+                                            <Text text="Peso" width="auto"/>
+                                        </header>
+                                    </Column>
+                                    <Column width="auto" minScreenWidth="Phone">
+                                        <header>
+                                            <Text text="Vence" width="auto"/>
+                                        </header>
+                                    </Column>
+                                    <Column width="auto" hAlign="Right" minScreenWidth="Phone">
+                                        <header>
+                                            <Text text="Rotacion" width="auto"/>
+                                        </header>
+                                    </Column>
+                                </columns>
+                                <items>
+                                    <ColumnListItem type="Navigation">
+                                        <cells>
+                                            <ObjectStatus text="{nombre}"/>
+                                            <ObjectStatus text="{descripcion}"/>
+                                            <HBox alignItems="Stretch" justifyContent="End" alignContent="Stretch">
+                                                <items>
+                                                    <ObjectNumber number="{path:'precio', formatter:'.formatFractionDigitFromValue'}" unit="COP" emphasized="false"/>
+                                                </items>
+                                            </HBox>
+                                            <HBox alignItems="Stretch" justifyContent="End" alignContent="Stretch">
+                                                <items>
+                                                    <ObjectNumber number="{path:'cantidad', formatter:'.formatFractionDigitFromValue'}" unit="" emphasized="false"/>
+                                                </items>
+                                            </HBox>
+                                            <HBox alignItems="Stretch" justifyContent="End" alignContent="Stretch">
+                                                <items>
+                                                    <ObjectNumber number="{path:'peso_unitario', formatter:'.formatFractionDigitFromValue'}" unit="Kg" emphasized="false"/>
+                                                </items>
+                                            </HBox>
+                                            <ObjectStatus text="{path: 'vencimiento', type: 'sap.ui.model.type.Date', formatOptions: { UTC: true, style: 'short' }}"/>
+                                            <HBox alignItems="Stretch" justifyContent="End" alignContent="Stretch">
+                                                <items>
+                                                    <ObjectNumber number="{path:'t_rotacion', formatter:'.formatFractionDigitFromValue'}" unit="Dias" emphasized="false"/>
+                                                </items>
+                                            </HBox>
+                                        </cells>
+                                    </ColumnListItem>
+                                </items>
+                            </Table>
+                            <Button text="Agregar" type="Default" iconFirst="true" width="79.3125px" enabled="true" visible="true" iconDensityAware="false"/>
+                        </uxap:blocks>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+        </uxap:sections>
+        <uxap:footer>
+            <OverflowToolbar design="auto">
+                <content>
+                    <ToolbarSpacer/>
+                    <Button text="Save" type="Emphasized" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/>
+                    <Button text="Cancel" type="Default" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/>
+                </content>
+            </OverflowToolbar>
+        </uxap:footer>
+    </uxap:ObjectPageLayout>
+</mvc:View>

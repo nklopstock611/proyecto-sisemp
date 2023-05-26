@@ -1,0 +1,143 @@
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="a8b6f9c29e3f22751922d8fe" xml:lang="en" sap:schema-version="0000" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityContainer Name="a8b6f9c29e3f22751922d8fe_Entities" m:IsDefaultEntityContainer="true">
+                <EntitySet Name="PedidoSet" EntityType="a8b6f9c29e3f22751922d8fe.Pedido" sap:creatable="true" sap:updatable="true" sap:deletable="true"/>
+                <AssociationSet Name="PedidoItemItem" Association="a8b6f9c29e3f22751922d8fe.PedidoItemItem" sap:creatable="true" sap:updatable="true" sap:deletable="true">
+                    <End EntitySet="PedidoSet" Role="FromRole_PedidoItemItem"/>
+                    <End EntitySet="ItemSet" Role="ToRole_PedidoItemItem"/>
+                </AssociationSet>
+                <AssociationSet Name="PedidoTransportadorTransportador" Association="a8b6f9c29e3f22751922d8fe.PedidoTransportadorTransportador" sap:creatable="true" sap:updatable="true" sap:deletable="true">
+                    <End EntitySet="PedidoSet" Role="FromRole_PedidoTransportadorTransportador"/>
+                    <End EntitySet="TransportadorSet" Role="ToRole_PedidoTransportadorTransportador"/>
+                </AssociationSet>
+                <AssociationSet Name="PedidoClienteCliente" Association="a8b6f9c29e3f22751922d8fe.PedidoClienteCliente" sap:creatable="true" sap:updatable="true" sap:deletable="true">
+                    <End EntitySet="PedidoSet" Role="FromRole_PedidoClienteCliente"/>
+                    <End EntitySet="ClienteSet" Role="ToRole_PedidoClienteCliente"/>
+                </AssociationSet>
+                <EntitySet Name="ItemSet" EntityType="a8b6f9c29e3f22751922d8fe.Item" sap:creatable="true" sap:updatable="true" sap:deletable="true"/>
+                <EntitySet Name="TransportadorSet" EntityType="a8b6f9c29e3f22751922d8fe.Transportador" sap:creatable="true" sap:updatable="true" sap:deletable="true"/>
+                <AssociationSet Name="TransportadorPedidoPedido" Association="a8b6f9c29e3f22751922d8fe.TransportadorPedidoPedido" sap:creatable="true" sap:updatable="true" sap:deletable="true">
+                    <End EntitySet="TransportadorSet" Role="FromRole_TransportadorPedidoPedido"/>
+                    <End EntitySet="PedidoSet" Role="ToRole_TransportadorPedidoPedido"/>
+                </AssociationSet>
+                <EntitySet Name="ClienteSet" EntityType="a8b6f9c29e3f22751922d8fe.Cliente" sap:creatable="true" sap:updatable="true" sap:deletable="true"/>
+                <EntitySet Name="ProductSet" EntityType="a8b6f9c29e3f22751922d8fe.Product" sap:creatable="true" sap:updatable="true" sap:deletable="true"/>
+            </EntityContainer>
+            <EntityType Name="Pedido">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="ID"/>
+                <Property Name="cliente_id" Type="Edm.Decimal" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="cliente_id"/>
+                <Property Name="fecha_pedido" Type="Edm.DateTime" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:display-format="Date" sap:label="fecha_pedido"/>
+                <Property Name="fecha_entrega" Type="Edm.DateTime" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:display-format="Date" sap:label="fecha_entrega"/>
+                <Property Name="precio_unitario" Type="Edm.Decimal" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="precio_unitario"/>
+                <Property Name="total" Type="Edm.Decimal" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="total"/>
+                <Property Name="estado" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="estado"/>
+                <Property Name="estadoCC" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="estadoCC"/>
+                <Property Name="direccion_entrega" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="direccion_entrega"/>
+                <Property Name="metodo_de_pago" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="metodo_de_pago"/>
+                <Property Name="___FK_f912a1f2dd19ae081932c59e_00041" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="___FK_f912a1f2dd19ae081932c59e_00041"/>
+                <Property Name="___FK_f912a1f2dd19ae081932c59e_00043" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="___FK_f912a1f2dd19ae081932c59e_00043"/>
+                <NavigationProperty Name="Item" Relationship="a8b6f9c29e3f22751922d8fe.PedidoItemItem" FromRole="FromRole_PedidoItemItem" ToRole="ToRole_PedidoItemItem"/>
+                <NavigationProperty Name="Transportador" Relationship="a8b6f9c29e3f22751922d8fe.PedidoTransportadorTransportador" FromRole="FromRole_PedidoTransportadorTransportador" ToRole="ToRole_PedidoTransportadorTransportador"/>
+                <NavigationProperty Name="Cliente" Relationship="a8b6f9c29e3f22751922d8fe.PedidoClienteCliente" FromRole="FromRole_PedidoClienteCliente" ToRole="ToRole_PedidoClienteCliente"/>
+            </EntityType>
+            <Association Name="PedidoItemItem">
+                <End Type="a8b6f9c29e3f22751922d8fe.Pedido" Multiplicity="1" Role="FromRole_PedidoItemItem"/>
+                <End Type="a8b6f9c29e3f22751922d8fe.Item" Multiplicity="*" Role="ToRole_PedidoItemItem"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_PedidoItemItem">
+                        <PropertyRef Name="ID"/>
+                    </Principal>
+                    <Dependent Role="ToRole_PedidoItemItem">
+                        <PropertyRef Name="___FK_f912a1f2dd19ae081932c59e_00039"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="PedidoTransportadorTransportador">
+                <End Type="a8b6f9c29e3f22751922d8fe.Pedido" Multiplicity="1" Role="FromRole_PedidoTransportadorTransportador"/>
+                <End Type="a8b6f9c29e3f22751922d8fe.Transportador" Multiplicity="1" Role="ToRole_PedidoTransportadorTransportador"/>
+                <ReferentialConstraint>
+                    <Principal Role="ToRole_PedidoTransportadorTransportador">
+                        <PropertyRef Name="ID"/>
+                    </Principal>
+                    <Dependent Role="FromRole_PedidoTransportadorTransportador">
+                        <PropertyRef Name="___FK_f912a1f2dd19ae081932c59e_00041"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="PedidoClienteCliente">
+                <End Type="a8b6f9c29e3f22751922d8fe.Pedido" Multiplicity="1" Role="FromRole_PedidoClienteCliente"/>
+                <End Type="a8b6f9c29e3f22751922d8fe.Cliente" Multiplicity="1" Role="ToRole_PedidoClienteCliente"/>
+                <ReferentialConstraint>
+                    <Principal Role="ToRole_PedidoClienteCliente">
+                        <PropertyRef Name="ID"/>
+                    </Principal>
+                    <Dependent Role="FromRole_PedidoClienteCliente">
+                        <PropertyRef Name="___FK_f912a1f2dd19ae081932c59e_00043"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <EntityType Name="Item">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="ID"/>
+                <Property Name="nombre" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="nombre"/>
+                <Property Name="descripcion" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="descripcion"/>
+                <Property Name="precio" Type="Edm.Decimal" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="precio"/>
+                <Property Name="cantidad" Type="Edm.Decimal" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="cantidad"/>
+                <Property Name="peso_unitario" Type="Edm.Decimal" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="peso_unitario"/>
+                <Property Name="vencimiento" Type="Edm.DateTime" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:display-format="Date" sap:label="vencimiento"/>
+                <Property Name="t_rotacion" Type="Edm.Decimal" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="t_rotacion"/>
+                <Property Name="___FK_f912a1f2dd19ae081932c59e_00039" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="___FK_f912a1f2dd19ae081932c59e_00039"/>
+            </EntityType>
+            <EntityType Name="Transportador">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="ID"/>
+                <Property Name="nombre" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="nombre"/>
+                <Property Name="estado" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="estado"/>
+                <Property Name="___FK_f912a1f2dd19ae081932c59e_00045" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="___FK_f912a1f2dd19ae081932c59e_00045"/>
+                <NavigationProperty Name="Pedido" Relationship="a8b6f9c29e3f22751922d8fe.TransportadorPedidoPedido" FromRole="FromRole_TransportadorPedidoPedido" ToRole="ToRole_TransportadorPedidoPedido"/>
+            </EntityType>
+            <Association Name="TransportadorPedidoPedido">
+                <End Type="a8b6f9c29e3f22751922d8fe.Transportador" Multiplicity="1" Role="FromRole_TransportadorPedidoPedido"/>
+                <End Type="a8b6f9c29e3f22751922d8fe.Pedido" Multiplicity="1" Role="ToRole_TransportadorPedidoPedido"/>
+                <ReferentialConstraint>
+                    <Principal Role="ToRole_TransportadorPedidoPedido">
+                        <PropertyRef Name="ID"/>
+                    </Principal>
+                    <Dependent Role="FromRole_TransportadorPedidoPedido">
+                        <PropertyRef Name="___FK_f912a1f2dd19ae081932c59e_00045"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <EntityType Name="Cliente">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="ID"/>
+                <Property Name="nombre" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="nombre"/>
+                <Property Name="correo" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="correo"/>
+                <Property Name="payment_method" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="payment_method"/>
+            </EntityType>
+            <EntityType Name="Product">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="ID"/>
+                <Property Name="Nombre" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="Nombre"/>
+                <Property Name="Cantidad" Type="Edm.Decimal" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="Cantidad"/>
+                <Property Name="Precio" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="Precio"/>
+                <Property Name="Fecha_de_vencimiento" Type="Edm.DateTime" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:display-format="Date" sap:label="Fecha_de_vencimiento"/>
+                <Property Name="Estado" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="Estado"/>
+                <Property Name="EstadoCC" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="EstadoCC"/>
+                <Property Name="Reservado" Type="Edm.Boolean" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="Reservado"/>
+            </EntityType>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
